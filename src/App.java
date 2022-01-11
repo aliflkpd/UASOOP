@@ -1,3 +1,5 @@
+import static javafx.scene.control.TableView.CONSTRAINED_RESIZE_POLICY;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,8 +20,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
-import static javafx.scene.control.TableView.CONSTRAINED_RESIZE_POLICY;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
@@ -41,8 +41,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
  
+ 
 
-public class DBConfig extends Application {
+public class App extends Application {
     TableView<Database> tableView = new TableView<Database>();
     public TableView tblView;
     private Text txtInfo;
@@ -104,19 +105,19 @@ public class DBConfig extends Application {
         txtSearch.setPromptText("Masukkan data yang ingin dicari");
        
         lblSearch.setPadding(new Insets(10));
-        lblSearch.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 12));
+        lblSearch.setFont(Font.font("Franklin Gothic Demi", FontWeight.MEDIUM, 12));
         lblSearch.setAlignment(Pos.CENTER);
         lblSearch.setUnderline(true);
        
         lblData.setPadding(new Insets(10));
-        lblData.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 22));
+        lblData.setFont(Font.font("Franklin Gothic Demi", FontWeight.MEDIUM, 22));
         lblData.setUnderline(true);
         lblData.setAlignment(Pos.CENTER);
        
-        lblTitle.setText("Database Kossan");
+        lblTitle.setText("Database GamingJoki");
         lblTitle.setUnderline(true);
         lblTitle.setPadding(new Insets(10));
-        lblTitle.setFont(Font.font("Comic Sans MS", FontWeight.MEDIUM, 22));
+        lblTitle.setFont(Font.font("Franklin Gothic Demi", FontWeight.MEDIUM, 22));
         lblTitle.setAlignment(Pos.CENTER);
        
         lblNama.setPrefSize(100, 30);
@@ -193,9 +194,6 @@ public class DBConfig extends Application {
      * =======================================================================================
      **/
    
-    /**
-    * @return
-    **/
     private ObservableList loadData(){
             ObservableList listData = FXCollections.observableArrayList();
             try {
@@ -208,13 +206,13 @@ public class DBConfig extends Application {
                 listData.add(modelDb);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DBConfig.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
             return listData;
            
     }
    
-    private ObservableList searchByNIM(String n){
+    private ObservableList searchByNama(String n){
         ObservableList listData = FXCollections.observableArrayList();
         try {
             Connection c = DatabaseConnector.tryConnect();
@@ -226,7 +224,7 @@ public class DBConfig extends Application {
                 listData.add(modelDb);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DBConfig.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listData;
     }
@@ -249,7 +247,7 @@ public class DBConfig extends Application {
             ps.setString(4,m.getNick());
             ps.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(DBConfig.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error");
         }
     }
@@ -263,7 +261,7 @@ public class DBConfig extends Application {
             ps.setString(1, m.getNama());
             ps.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(DBConfig.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }
@@ -280,7 +278,7 @@ public class DBConfig extends Application {
             ps.setString(4, m.getNama());
             ps.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(DBConfig.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     //=======================================================================================
@@ -313,9 +311,9 @@ public class DBConfig extends Application {
         showData();
     }
    
-    private void searchbyNIM(){
+    private void searchbyNama(){
         data.clear(); // <- menghapus data pada penampung data
-        data = searchByNIM(txtSearch.getText().trim());
+        data = searchByNama(txtSearch.getText().trim());
         tblView.setItems(data); // <- menaruh data pada tabel agar bisa tampil
         tblView.getSelectionModel().clearSelection(); // <- menghapus seleksi baris pada tabel
     }
@@ -377,7 +375,7 @@ public class DBConfig extends Application {
             refresh(); // <- MENGEMBALIKAN TAMPILAN SEPERTI SEMULA
         });
         txtSearch.setOnKeyTyped((KeyEvent ke) -> {
-            searchbyNIM(); // <- SEARCH DATA BY NIM
+            searchbyNama(); // <- SEARCH DATA BY Nama
         });
         Scene scene = new Scene(splitPaneH, 1216, 618);
         scene.setFill(null);

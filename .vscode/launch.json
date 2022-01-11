@@ -4,12 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
         {
             "type": "java",
-            "name": "Launch DBConfig",
+            "name": "Launch App",
             "request": "launch",
-            "mainClass": "DBConfig",
-            "projectName": "uas oop_40d35561"
+            "mainClass": "App",
+            "projectName": "uas oop_a4684f19"
         },
         {
             "type": "java",
@@ -19,11 +20,11 @@
         },
         {
             "type": "java",
-            "name": "Launch DBConfig",
+            "name": "Launch App",
             "request": "launch",
-            "mainClass": "DBConfig",
-            "vmArgs": "--module-path c:\\Users\\acer\\Downloads\\openjfx-17.0.1_windows-x64_bin-sdk\\javafx-sdk-17.0.1\\lib --add-modules javafx.controls",
-            "projectName": "uas oop_40d35561"
+            "mainClass": "App",
+            "vmArgs": "--module-path c:\\Users\\acer\\Downloads\\javafx-sdk-17.0.1\\lib --add-modules javafx.controls",
+            "projectName": "uas oop_a4684f19"
         }
     ]
 }
